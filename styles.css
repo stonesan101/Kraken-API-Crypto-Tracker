@@ -1,0 +1,95 @@
+section {
+    display: grid;
+    gap: .2rem 0;
+    text-align: center;
+    width: 100%;
+    max-width: 20rem;
+
+}
+
+.wrapper {
+    justify-content: center;
+    display: flex;
+    flex-wrap: wrap;
+    gap: .7rem;
+    input{
+        max-width: 4rem;
+    }
+    *{
+        align-self: center;
+        margin: .3rem;
+
+    }
+}
+body > div{
+    max-width: 90vw;
+}
+body {
+    background-color: #111;
+    color: darkgrey;
+    margin: 1.5rem;
+    display: grid;
+    width: 90vw;
+}
+
+#crypto {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+}
+
+h1 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+    margin: 10px;
+    font-size: 1.1rem;
+}
+
+section label {
+    width: 100%;
+    display: grid;
+    grid-template-columns:1fr 1fr;
+}
+
+section label, label * {
+    border-style: ridge;
+    border-color: darkgrey;
+    border-width: .1rem;
+}
+
+img {
+    height: 2rem;
+    border-radius: 100%;
+}
+
+#template {
+    display: none
+}
+
+.hidden {
+    display: none !important;
+}
+
+#crypto > section > div{
+    display: grid;
+    grid-template-columns: 2.5rem 1fr 2.5rem;
+    align-items: center;
+    border-radius: .5rem;
+    padding: .2rem;
+    justify-items: center;
+}
+
+#crypto > section button{
+    height: 1.6rem;
+    width: 1.6rem;
+    background-color: red;
+    border-radius: 100%;
+}
+.buy{
+    background-color: red;
+}
+.sell{
+    background-color: green;
+}

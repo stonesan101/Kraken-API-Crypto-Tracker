@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href='styles.css'>
+    <script src="index.js" defer></script>
+</head>
+<body>
+<div class="wrapper">
+    <label for="selectCrypto">Select Crypto<select id="selectCrypto">
+        <option>Select Crypto</option>
+    </select></label>
+
+    <label for="inputAmount">Amount Owned<input type="number" id="inputAmount" placeholder="2"></label>
+
+    <label for="targetIncrease">Target Percent Increase<input type="number" id="targetIncrease" placeholder="5"></label>
+    <label for="buyIn">Buy In<input type="number" id="buyIn" placeholder="0"></label>
+
+    <button id="addCrypto">Add Crypto</button>
+</div>
+<div id="crypto">
+    <section id="template">
+        <div>
+            <h1></h1>
+            <button onclick="event.target.parentElement.parentElement.classList.add('hidden')"> X</button>
+        </div>
+        <label>Time Elapsed
+            <output class="timeElapsed"></output>
+        </label>
+
+        <label>Current Price
+            <output class="currentPrice"></output>
+        </label>
+
+        <label>Current Value
+            <output class="currentValue"></output>
+        </label>
+
+        <label>Target Value
+            <output class="targetValue"></output>
+        </label>
+
+        <label>Percent From Start
+            <output class="percentFromStart"></output>
+        </label>
+
+        <label>One Min Change
+            <output class="oneMinChange"></output>
+        </label>
+
+        <label>Five Min Change
+            <output class="fiveMinChange"></output>
+        </label>
+
+        <label>Low | High Price
+            <output class="lowHigh"></output>
+        </label>
+
+    </section>
+</div>
+
+</body>
+</html>
