@@ -243,8 +243,8 @@ class RecordKeeper {
         this.currentValue.value = this.format(this.memo.units * this.current)
         this.lowHigh.value = `$${this.low} | $${this.high}`
 
-        this.section.classList.toggle('sell', this.currentValue.value >= this.targetValue.value)
-        this.section.classList.toggle('buy', this.currentValue.value <= this.targetBuyIn)
+        this.section.classList.toggle('sell', this.currentValue.value.substr(1) >= this.targetValue.value.substr(1))
+        this.section.classList.toggle('buy', this.currentPrice.value.substr(1) <= this.targetBuyIn)
     }
 
     /**

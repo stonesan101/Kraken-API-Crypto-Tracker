@@ -4,7 +4,9 @@ section {
     text-align: center;
     width: 100%;
     max-width: 20rem;
-
+    padding: 10px;
+    border: .1rem solid darkgrey;
+    border-radius: .5rem;
 }
 
 .wrapper {
@@ -12,18 +14,22 @@ section {
     display: flex;
     flex-wrap: wrap;
     gap: .7rem;
-    input{
+
+    input {
         max-width: 4rem;
     }
-    *{
+
+    * {
         align-self: center;
         margin: .3rem;
 
     }
 }
-body > div{
+
+body > div {
     max-width: 90vw;
 }
+
 body {
     background-color: #111;
     color: darkgrey;
@@ -72,7 +78,7 @@ img {
     display: none !important;
 }
 
-#crypto > section > div{
+#crypto > section > div {
     display: grid;
     grid-template-columns: 2.5rem 1fr 2.5rem;
     align-items: center;
@@ -81,15 +87,17 @@ img {
     justify-items: center;
 }
 
-#crypto > section button{
+#crypto > section button {
     height: 1.6rem;
     width: 1.6rem;
     background-color: red;
     border-radius: 100%;
 }
-.buy{
+
+.buy {
     background-color: red;
 }
-.sell{
+
+.sell {
     background-color: green;
 }
