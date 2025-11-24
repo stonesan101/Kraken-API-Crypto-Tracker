@@ -18,52 +18,67 @@ class RecordKeeper {
      * @param {number} buyIn - Target buy-in price threshold for purchase alerts
      */
     constructor(units, increase, pairName, id, html, buyIn) {
-        /** @type {number} Previous price value for comparison to detect changes */
+        /** @type {number}
+         *  Previous price value for comparison to detect changes */
         this.oldTotal = 0;
 
-        /** @type {number} Target buy-in price for purchase alerts */
+        /** @type {number}
+         *  Target buy-in price for purchase alerts */
         this.targetBuyIn = buyIn;
 
-        /** @type {number[]} Array of historical price values (max 300 entries, represents 5 minutes at 1-second intervals) */
+        /** @type {number[]}
+         *  Array of historical price values (max 300 entries, represents 5 minutes at 1-second intervals) */
         this.history = [];
 
-        /** @type {number} Markup multiplier for target sell price calculation */
+        /** @type {number}
+         *  Markup multiplier for target sell price calculation */
         this.markup = increase;
 
-        /** @type {string} Trading pair name (e.g., "BTC/USD", "ETH/USD") */
+        /** @type {string}
+         *  Trading pair name (e.g., "BTC/USD", "ETH/USD") */
         this.pairName = pairName;
 
-        /** @type {HTMLElement} Section element container for this tracker instance */
+        /** @type {HTMLElement}
+         *  Section element container for this tracker instance */
         this.section = document.createElement('section');
         this.section.id = id;
         this.section.innerHTML = html;
         appendDiv.appendChild(this.section);
 
-        /** @type {boolean} Flag indicating if tracker has been running for over 1 minute */
+        /** @type {boolean}
+         *  Flag indicating if tracker has been running for over 1 minute */
         this.over1Min = false;
 
-        /** @type {HTMLInputElement} Input element displaying elapsed time */
+        /** @type {HTMLInputElement}
+         *  Input element displaying elapsed time */
         this.timeElapsed = document.querySelector(`#${id} .timeElapsed`)
 
-        /** @type {HTMLInputElement} Input element displaying current price */
+        /** @type {HTMLInputElement}
+         *  Input element displaying current price */
         this.currentPrice = document.querySelector(`#${id} .currentPrice`)
 
-        /** @type {HTMLInputElement} Input element displaying percentage change from start */
+        /** @type {HTMLInputElement}
+         *  Input element displaying percentage change from start */
         this.percentFromStart = document.querySelector(`#${id} .percentFromStart`)
 
-        /** @type {HTMLInputElement} Input element displaying 1-minute change percentage */
+        /** @type {HTMLInputElement}
+         *  Input element displaying 1-minute change percentage */
         this.oneMinChange = document.querySelector(`#${id} .oneMinChange`)
 
-        /** @type {HTMLInputElement} Input element displaying 5-minute change percentage */
+        /** @type {HTMLInputElement}
+         *  Input element displaying 5-minute change percentage */
         this.fiveMinChange = document.querySelector(`#${id} .fiveMinChange`)
 
-        /** @type {HTMLInputElement} Input element displaying current portfolio value */
+        /** @type {HTMLInputElement}
+         *  Input element displaying current portfolio value */
         this.currentValue = document.querySelector(`#${id} .currentValue`)
 
-        /** @type {HTMLInputElement} Input element displaying target sell value */
+        /** @type {HTMLInputElement}
+         *  Input element displaying target sell value */
         this.targetValue = document.querySelector(`#${id} .targetValue`)
 
-        /** @type {HTMLInputElement} Input element displaying low and high price range */
+        /** @type {HTMLInputElement}
+         *  Input element displaying low and high price range */
         this.lowHigh = document.querySelector(`#${id} .lowHigh`)
 
         /**
@@ -88,11 +103,12 @@ class RecordKeeper {
          * @property {Function} format - Returns formatted time string
          */
         this.time = {
-            /** @type {number} Current hour */
-            hour: 0,
-            /** @type {number} Current minute */
-            min: 0,
-            /** @type {number} Current second */
+            /** @type {number}
+             *  Current hour */
+            hour: 0, /** @type {number}
+             *  Current minute */
+            min: 0, /** @type {number}
+             *  Current second */
             sec: 0,
 
             /**
@@ -127,16 +143,20 @@ class RecordKeeper {
             }
         };
 
-        /** @type {number} Highest price recorded since tracking started */
+        /** @type {number}
+         *  Highest price recorded since tracking started */
         this.high = 0;
 
-        /** @type {number} Lowest price recorded since tracking started */
+        /** @type {number}
+         *  Lowest price recorded since tracking started */
         this.low = Infinity;
 
-        /** @type {number} Most recent price fetched from API */
+        /** @type {number}
+         *  Most recent price fetched from API */
         this.current = 0;
 
-        /** @type {number} Timestamp (milliseconds) when tracking started, used for accurate timing */
+        /** @type {number}
+         *  Timestamp (milliseconds) when tracking started, used for accurate timing */
         this.startTime = 0;
 
         // Start the updates
