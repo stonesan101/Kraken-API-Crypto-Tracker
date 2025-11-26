@@ -348,7 +348,7 @@ getPairs()
  * Event listener for adding or updating a cryptocurrency tracker
  * Creates a new RecordKeeper instance or updates an existing one with new parameters
  */
-document.getElementById('addCrypto').addEventListener('click', (event) => {
+document.getElementById('addCrypto').addEventListener('click', () => {
     const units = document.getElementById('inputAmount').value || 2
     const buyIn = document.getElementById('buyIn').value || 0
     const increase = 1 + (+document.getElementById('targetIncrease').value / 100 || .05)
