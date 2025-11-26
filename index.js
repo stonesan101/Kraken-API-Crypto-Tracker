@@ -170,7 +170,7 @@ class RecordKeeper {
      * @returns {Promise<void>}
      */
     async initialize() {
-        const startPrice = await this.getCurrent();
+        const startPrice = await this.getCurrentPrice();
         this.memo.starting = startPrice;
         this.memo.value = startPrice;
         this.high = startPrice;
@@ -188,11 +188,10 @@ class RecordKeeper {
      * @async
      * @returns {Promise<number>} Current price of the cryptocurrency in USD
      */
-    async getCurrent() {
+    async getCurrentPrice() {
         const response = await fetch(`https://api.kraken.com/0/public/Ticker?pair=${this.pairName}`);
         const data = await response.json();
-        const price = +data.result[this.pairName].c[0];
-        return price;
+        return +data.result[this.pairName].c[0];
     }
 
     /**
@@ -232,19 +231,21 @@ class RecordKeeper {
      * @returns {void}
      */
     getTotals() {
-        if (this.history.length === 0) return;
         if (!this.oldTotal) {
             this.targetValue.value = this.format(this.current * this.markup)
         }
-        this.currentPrice.value = '$' + this.current
-        this.percentFromStart.value = this.percentage(this.memo.starting, this.current)
+
+        if (this.current !== this.oldTotal) {
+            this.currentPrice.value = '$' + this.current
+            this.percentFromStart.value = this.percentage(this.memo.starting, this.current)
+            this.currentValue.value = this.format(this.memo.units * this.current)
+            this.lowHigh.value = `$${this.low} | $${this.high}`
+            this.section.classList.toggle('sell', this.currentPrice.value.slice(1) >= this.targetValue.value.slice(1))
+            this.section.classList.toggle('buy', this.currentPrice.value.slice(1) <= this.targetBuyIn)
+        }
+
         this.oneMinChange.value = this.percentage(this.history[Math.max(0, this.history.length - 60)], this.current)
         this.fiveMinChange.value = this.percentage(this.history[0], this.current)
-        this.currentValue.value = this.format(this.memo.units * this.current)
-        this.lowHigh.value = `$${this.low} | $${this.high}`
-
-        this.section.classList.toggle('sell', this.currentPrice.value.slice(1) >= this.targetValue.value.slice(1))
-        this.section.classList.toggle('buy', this.currentPrice.value.slice(1) <= this.targetBuyIn)
     }
 
     /**
@@ -270,7 +271,7 @@ class RecordKeeper {
      * @returns {Promise<void>}
      */
     async getPrice() {
-        this.current = await this.getCurrent();
+        this.current = await this.getCurrentPrice();
         this.time.incrementTime();
         this.history.push(this.current);
 
@@ -285,9 +286,7 @@ class RecordKeeper {
             this.low = this.current;
         }
 
-        if (this.current !== this.oldTotal) {
             this.getTotals();
-        }
 
         this.oldTotal = this.current;
         this.timeElapsed.value = this.time.format()
