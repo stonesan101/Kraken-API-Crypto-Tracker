@@ -312,8 +312,10 @@ async function getPairs() {
     let data = await result.json();
     const entries = Object.entries(data.result)
     for await (const entry of entries) {
-        if (entry[1].quote === 'ZUSD' || entry[1].quote === 'USD1') {
-            const pairName = entry[1].wsname !== 'XBT/USD1' ? entry[1].wsname : 'BTC/USD'
+        if (entry[1].quote === 'ZUSD') {
+            select.innerHTML += `<option value="${entry[0]}">${entry[1].wsname}</option>`
+        } else if (entry[1].quote === 'USD1') {
+            const pairName = entry[0] === "XBTUSD1" ? 'BTC/USD' : entry[1].wsname.slice(-1)
             select.innerHTML += `<option value="${entry[0]}">${pairName}</option>`
         }
     }
