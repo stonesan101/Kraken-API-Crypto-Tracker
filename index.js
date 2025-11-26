@@ -177,8 +177,9 @@ class RecordKeeper {
         this.low = startPrice;
         this.current = startPrice;
         this.startTime = Date.now();
-        const coinURL = await getCryptoLogo(this.pairName.split('/')[0])
-        this.section.querySelector('div').innerHTML = `<img src=${coinURL}>${this.section.querySelector('div').innerHTML}`
+        const baseCoin = this.pairName.split('/')[0]
+        const coinURL = await getCryptoLogo(baseCoin)
+        this.section.querySelector('div').innerHTML = `<img src=${coinURL}>${this.section.querySelector('div').innerHTML} alt='${baseCoin} Logo'`
         this.section.querySelector('h1').textContent = `${this.pairName} Price Tracker`
         this.getPrice();
     }
