@@ -234,7 +234,7 @@ class RecordKeeper {
     getTotals() {
         if (this.history.length === 0) return;
         if (!this.oldTotal) {
-            this.targetValue.value = this.format(this.current * this.markup * this.memo.units)
+            this.targetValue.value = this.format(this.current * this.markup)
         }
         this.currentPrice.value = '$' + this.current
         this.percentFromStart.value = this.percentage(this.memo.starting, this.current)
@@ -243,8 +243,8 @@ class RecordKeeper {
         this.currentValue.value = this.format(this.memo.units * this.current)
         this.lowHigh.value = `$${this.low} | $${this.high}`
 
-        this.section.classList.toggle('sell', this.currentValue.value.substr(1) >= this.targetValue.value.substr(1))
-        this.section.classList.toggle('buy', this.currentPrice.value.substr(1) <= this.targetBuyIn)
+        this.section.classList.toggle('sell', this.currentPrice.value.slice(1) >= this.targetValue.value.slice(1))
+        this.section.classList.toggle('buy', this.currentPrice.value.slice(1) <= this.targetBuyIn)
     }
 
     /**
@@ -258,7 +258,7 @@ class RecordKeeper {
         this.markup = markup;
         this.memo.units = units;
         this.targetBuyIn = buyIn
-        this.targetValue.value = this.format(this.current * this.markup * this.memo.units)
+        this.targetValue.value = this.format(this.memo.starting * this.markup)
         this.getTotals()
     }
 
